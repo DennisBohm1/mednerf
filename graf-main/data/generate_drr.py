@@ -106,9 +106,9 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    input_path = '/media/newuser/AprilsDrive/phd/datasets/knee006/Knee'
-    save_root_path = '/media/newuser/AprilsDrive/phd/datasets/xrays/knee/knee_006'
-    plasti_path = '/home/newuser/Documents/PhD/plastimatch-build'
+    input_path = '/Users/dennis/Library/Mobile Documents/com~apple~CloudDocs/CSE/Jaar 5/SCG/mednerf/graf-main/data/Pancreas-99667'
+    save_root_path = '/Users/dennis/Library/Mobile Documents/com~apple~CloudDocs/CSE/Jaar 5/SCG/mednerf/graf-main/results/pancreas'
+    plasti_path = r'/Users/dennis/Downloads/plastimatch-1.9.0/src'
     output_raw_name = 'raw_file'
     # False: single xray output
     multiple_view_mode = True
@@ -131,9 +131,11 @@ if __name__ == '__main__':
     # Note that the following values are sometimes missing from the CT
     # if missing, use sad=541, sid=949 for chest
     # DistanceSourceToPatient in mm
-    sad = str(ds.DistanceSourceToPatient)
+    # sad = str(ds.DistanceSourceToPatient)
+    sad = 541
     # DistanceSourceToDetector in mm
-    sid = str(ds.DistanceSourceToDetector)
+    # sid = str(ds.DistanceSourceToDetector)
+    sid = 949
 
     if preprocessing:
         # Converting dicom files to .mha for plastimatch processing
