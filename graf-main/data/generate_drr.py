@@ -150,10 +150,7 @@ if __name__ == '__main__':
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
         command = ' '.join(adjust_lst)
-        print(command)
-        output = qx('plastimatch')
-        print(output)
-        output = qx(command)
+        output = qx(adjust_lst, shell=True)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
     # compute isocenter
@@ -170,7 +167,7 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        output = qx(drr_lst)
+        output = qx(drr_lst, shell=True)
     else:
         if frontal_dir:
             dir = "0 1 0"
@@ -184,7 +181,7 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        output = qx(drr_lst)
+        output = qx(drr_lst, shell=True)
 
     file_paths = []
     to_delete = []
