@@ -149,7 +149,7 @@ if __name__ == '__main__':
                       raw_input_file, "--output", raw_input_file,
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
-        command = ' '.join(adjust_lst)
+        command = ' '.join([str(elem) for elem in adjust_lst])
         output = qx(command, shell=True)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
@@ -167,7 +167,7 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        command = ' '.join(drr_lst)
+        command = ' '.join([str(elem) for elem in drr_lst])
         output = qx(command, shell=True)
     else:
         if frontal_dir:
@@ -182,7 +182,7 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        command = ' '.join(drr_lst)
+        command = ' '.join([str(elem) for elem in drr_lst])
         output = qx(command, shell=True)
 
     file_paths = []
