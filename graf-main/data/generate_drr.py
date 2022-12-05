@@ -118,7 +118,7 @@ if __name__ == '__main__':
     # True: dicom conversion & HU adjustment
     # False: output xray from given .mha (i.e., raw_input_file)
     preprocessing = True
-    raw_input_file = './data/Pancreas raw/raw_file.mha'
+    raw_input_file = './data/Pancreas Results/raw_file.mha'
     # Use "500 500" for chest
     # use "350 350" for knee
     detector_size = "350 350"
@@ -143,6 +143,7 @@ if __name__ == '__main__':
     if preprocessing:
         # Converting dicom files to .mha for plastimatch processing
         raw_input_file = os.path.join(save_root_path, '{}.mha'.format(output_raw_name))
+        print(raw_input_file)
         dicom2raw(input_path, raw_input_file)
         # truncates the inputs to the range of [-1000,+1000]
         adjust_lst = [plasti_path + '/plastimatch', "adjust", "--input",
