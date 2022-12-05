@@ -144,6 +144,7 @@ if __name__ == '__main__':
         # Converting dicom files to .mha for plastimatch processing
         raw_input_file = os.path.join(save_root_path, '{}.mha'.format(output_raw_name))
         print(raw_input_file)
+        print(os.getcwd())
         dicom2raw(input_path, raw_input_file)
         # truncates the inputs to the range of [-1000,+1000]
         adjust_lst = [plasti_path + '/plastimatch', "adjust", "--input",
