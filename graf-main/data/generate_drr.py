@@ -111,7 +111,7 @@ def savepng(filename, direction, idx):
 if __name__ == '__main__':
     input_path = './data/Pancreas-99667'
     save_root_path = './data/Pancreas Results'
-    plasti_path = r'/usr/bin/plastimatch'
+    plasti_path = r'/usr/bin'
     output_raw_name = 'raw_file'
     # False: single xray output
     multiple_view_mode = True
