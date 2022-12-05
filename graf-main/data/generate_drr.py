@@ -151,7 +151,7 @@ if __name__ == '__main__':
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
         command = ' '.join(adjust_lst)
         print(command)
-        output = qx('plastimatch adjust')
+        output = qx('plastimatch')
         output = qx(command)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
