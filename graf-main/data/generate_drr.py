@@ -111,7 +111,7 @@ def savepng(filename, direction, idx):
 if __name__ == '__main__':
     input_path = '/home/dennis/mednerf/graf-main/data/Pancreas-99667'
     save_root_path = '/home/dennis/mednerf/graf-main/data/PancreasResults'
-    plasti_path = r'/usr/bin'
+    plasti_path = '/usr/bin'
     output_raw_name = 'raw_file'
     # False: single xray output
     multiple_view_mode = True
@@ -151,6 +151,7 @@ if __name__ == '__main__':
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
         command = ' '.join(adjust_lst)
         print(command)
+        output = qx('/usr/bin/plastimatch adjust')
         output = qx(command)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
