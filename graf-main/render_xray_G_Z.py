@@ -145,7 +145,7 @@ def reconstruct(args, config_file):
     trans = transforms.Compose(transform_list)
 
     target_xray = glob.glob(os.path.join(args.xray_img_path, '*.png'))
-    print(os.getcwd())
+    print(os.path.join(args.xray_img_path, '*.png'))
     target_xray = torch.unsqueeze(trans(Image.open(target_xray[0]).convert('RGB')), 0)
 
     range_theta = (to_theta(config_file['data']['vmin']), to_theta(config_file['data']['vmax']))
