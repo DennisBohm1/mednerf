@@ -23,6 +23,7 @@ def load_scan_mhda(path):
     img = sitk.GetArrayFromImage(img_itk)
     return img_itk, img, img_itk.GetOrigin(), img_itk.GetSize(), img_itk.GetSpacing()
 
+
 # .dcm to .mha / .mhd
 def dicom2raw(dicom_folder, output_file):
     reader = sitk.ImageSeriesReader()
@@ -39,6 +40,7 @@ def dicom2raw(dicom_folder, output_file):
 
     sitk.WriteImage(image, output_file)
 
+
 # compute xray source center in world coordinate
 def get_center(origin, size, spacing):
     origin = np.array(origin)
@@ -47,6 +49,7 @@ def get_center(origin, size, spacing):
     center = origin + (size - 1) / 2 * spacing
     return center
 
+
 # convert a ndarray to string
 def array2string(ndarray):
     ret = ""
@@ -54,9 +57,10 @@ def array2string(ndarray):
         ret = ret + str(i) + " "
     return ret[:-2]
 
+
 # save a .pfm file as a .png file
 def savepng(filename, direction, idx):
-    file = open(filename, 'rb') 
+    file = open(filename, 'rb')
     color = None
     width = None
     height = None
@@ -65,25 +69,25 @@ def savepng(filename, direction, idx):
 
     header = file.readline().rstrip()
     if header.decode('ascii') == 'PF':
-        color = True    
+        color = True
     elif header.decode('ascii') == 'Pf':
         color = False
     else:
         raise Exception('Not a PFM file.')
 
     dim_match = re.search(r'(\d+)\s(\d+)', file.readline().decode('ascii'))
-    
+
     if dim_match:
         width, height = map(int, dim_match.groups())
     else:
         raise Exception('Malformed PFM header.')
 
     scale = float(file.readline().rstrip())
-    if scale < 0: # little-endian
+    if scale < 0:  # little-endian
         endian = '<'
         scale = -scale
     else:
-        endian = '>' # big-endian
+        endian = '>'  # big-endian
 
     data = np.fromfile(file, endian + 'f')
     shape = (height, width, 3) if color else (height, width)
@@ -93,7 +97,7 @@ def savepng(filename, direction, idx):
     # PA view should do additional left-right flip
     if direction == 1:
         im = np.fliplr(im)
-    
+
     savedir, _ = os.path.split(filename)
     outfile = os.path.join(savedir, f"xray{idx:04}.png".format(direction))
     # plt.imshow(im, cmap=plt.cm.gray)
@@ -104,18 +108,17 @@ def savepng(filename, direction, idx):
     cv2.imwrite(outfile, gray)
 
 
-
 if __name__ == '__main__':
-    input_path = '/Users/dennis/Library/Mobile Documents/com~apple~CloudDocs/CSE/Jaar 5/SCG/mednerf/graf-main/data/Pancreas-99667'
-    save_root_path = '/Users/dennis/Library/Mobile Documents/com~apple~CloudDocs/CSE/Jaar 5/SCG/mednerf/graf-main/results/pancreas'
-    plasti_path = r'/Users/dennis/Downloads/plastimatch-1.9.0/src'
+    input_path = './data/Pancreas-99667'
+    save_root_path = './data/Pancreas Results'
+    plasti_path = r'/usr/bin/plastimatch'
     output_raw_name = 'raw_file'
     # False: single xray output
     multiple_view_mode = True
     # True: dicom conversion & HU adjustment
     # False: output xray from given .mha (i.e., raw_input_file)
     preprocessing = True
-    raw_input_file = '/media/newuser/AprilsDrive/phd/datasets/xrays/knee/knee_006/raw_file.mha'
+    raw_input_file = './data/Pancreas raw/raw_file.mha'
     # Use "500 500" for chest
     # use "350 350" for knee
     detector_size = "350 350"
@@ -142,10 +145,10 @@ if __name__ == '__main__':
         raw_input_file = os.path.join(save_root_path, '{}.mha'.format(output_raw_name))
         dicom2raw(input_path, raw_input_file)
         # truncates the inputs to the range of [-1000,+1000]
-        adjust_lst = [plasti_path+'/plastimatch', "adjust", "--input",
+        adjust_lst = [plasti_path + '/plastimatch', "adjust", "--input",
                       raw_input_file, "--output", raw_input_file,
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
-        #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
+        # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
         output = qx(adjust_lst)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
@@ -156,7 +159,7 @@ if __name__ == '__main__':
 
     if multiple_view_mode:
         o_path = os.path.join(save_root_path, 'xray')
-        drr_lst = [plasti_path+'/plastimatch', "drr", "-t", "pfm",
+        drr_lst = [plasti_path + '/plastimatch', "drr", "-t", "pfm",
                    "--algorithm", "uniform", "--gantry-angle", "0",
                    "-N", angle, "-a", num_xrays, "--sad", sad, "--sid", sid,
                    "--autoscale", "--autoscale-range", bg_color,
@@ -170,7 +173,7 @@ if __name__ == '__main__':
         else:
             dir = "1 0 0"
         o_path = os.path.join(save_root_path, 'xray')
-        drr_lst = [plasti_path+'/plastimatch', "drr", "-t", "pfm",
+        drr_lst = [plasti_path + '/plastimatch', "drr", "-t", "pfm",
                    "--algorithm", "uniform", "--gantry-angle", "0",
                    "-n", dir, "--sad", sad, "--sid", sid,
                    "--autoscale", "--autoscale-range", bg_color,
