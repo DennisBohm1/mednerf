@@ -3,6 +3,7 @@ from torch import optim
 from os import path
 from GAN_stability.gan_training.models import generator_dict, discriminator_dict
 from GAN_stability.gan_training.train import toggle_grad
+from yaml import FullLoader
 
 
 # General config
@@ -26,7 +27,7 @@ def load_config(path, default_path):
         cfg = load_config(inherit_from, default_path)
     elif default_path is not None:
         with open(default_path, 'r') as f:
-            cfg = yaml.load(f)
+            cfg = yaml.load(f, FullLoader)
     else:
         cfg = dict()
 
