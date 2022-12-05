@@ -121,12 +121,12 @@ if __name__ == '__main__':
     raw_input_file = '/home/dennis/mednerf/graf-main/data/PancreasResults/raw_file.mha'
     # Use "500 500" for chest
     # use "350 350" for knee
-    detector_size = "350 350"
+    detector_size = "'350 350'"
     # Black bg: "0 255", white bg: "255 0"
-    bg_color = "0 255"
+    bg_color = "'0 255'"
     # If single view, choose frontal or lateral view
     frontal_dir = True
-    resolution = "128 128"
+    resolution = "'128 128'"
     # If multiple view:
     num_xrays = "72"
     angle = "5"
