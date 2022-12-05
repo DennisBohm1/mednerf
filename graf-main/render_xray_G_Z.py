@@ -145,6 +145,7 @@ def reconstruct(args, config_file):
     trans = transforms.Compose(transform_list)
 
     target_xray = glob.glob(os.path.join(args.xray_img_path, '*.png'))
+    print(target_xray)
     target_xray = torch.unsqueeze(trans(Image.open(target_xray[0]).convert('RGB')), 0)
 
     range_theta = (to_theta(config_file['data']['vmin']), to_theta(config_file['data']['vmax']))
@@ -237,7 +238,7 @@ if __name__ == "__main__":
     args, unknown = parser.parse_known_args()
     device = torch.device("cuda:0")
 
-    config_file = load_config(args.config_file, 'configs/knee.yaml')
+    config_file = load_config(args.config_file, 'configs/default.yaml')
     config_file['data']['fov'] = float(config_file['data']['fov'])
     config_file = update_config(config_file, unknown)
 
