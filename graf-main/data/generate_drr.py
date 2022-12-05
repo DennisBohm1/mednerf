@@ -110,7 +110,7 @@ def savepng(filename, direction, idx):
 
 if __name__ == '__main__':
     input_path = '/home/dennis/mednerf/graf-main/data/Pancreas-99667'
-    save_root_path = '/home/dennis/mednerf/graf-main/data/Pancreas\ Results'
+    save_root_path = '/home/dennis/mednerf/graf-main/data/PancreasResults'
     plasti_path = r'/usr/bin'
     output_raw_name = 'raw_file'
     # False: single xray output
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     # True: dicom conversion & HU adjustment
     # False: output xray from given .mha (i.e., raw_input_file)
     preprocessing = True
-    raw_input_file = '/home/dennis/mednerf/graf-main/data/Pancreas\ Results/raw_file.mha'
+    raw_input_file = '/home/dennis/mednerf/graf-main/data/PancreasResults/raw_file.mha'
     # Use "500 500" for chest
     # use "350 350" for knee
     detector_size = "350 350"
