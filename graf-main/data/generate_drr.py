@@ -52,10 +52,10 @@ def get_center(origin, size, spacing):
 
 # convert a ndarray to string
 def array2string(ndarray):
-    ret = ""
+    ret = "'"
     for i in ndarray:
         ret = ret + str(i) + " "
-    return ret[:-1]
+    return ret[:-1] + "'"
 
 
 # save a .pfm file as a .png file
@@ -179,7 +179,7 @@ if __name__ == '__main__':
                    "--algorithm", "uniform", "--gantry-angle", "0",
                    "-n", dir, "--sad", sad, "--sid", sid,
                    "--autoscale", "--autoscale-range", bg_color,
-                   "-r", resolution, "-o", '\'' + array2string(center) + '\'',
+                   "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
         command = ' '.join(drr_lst)
