@@ -179,7 +179,7 @@ if __name__ == '__main__':
                    "--algorithm", "uniform", "--gantry-angle", "0",
                    "-n", dir, "--sad", sad, "--sid", sid,
                    "--autoscale", "--autoscale-range", bg_color,
-                   "-r", resolution, "-o", '\"' + array2string(center) + '\"',
+                   "-r", resolution, "-o", '\'' + array2string(center) + '\'',
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
         command = ' '.join(drr_lst)
