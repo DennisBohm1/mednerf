@@ -167,7 +167,8 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        output = qx(drr_lst, shell=True)
+        command = ' '.join(drr_lst)
+        output = qx(command, shell=True)
     else:
         if frontal_dir:
             dir = "0 1 0"
@@ -181,7 +182,8 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", array2string(center),
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        output = qx(drr_lst, shell=True)
+        command = ' '.join(drr_lst)
+        output = qx(command, shell=True)
 
     file_paths = []
     to_delete = []
