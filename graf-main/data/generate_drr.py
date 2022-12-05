@@ -182,7 +182,7 @@ if __name__ == '__main__':
                    "-r", resolution, "-o", '\"' + array2string(center) + '\"',
                    "-z", detector_size, "-P", "preprocess",
                    "-I", raw_input_file, "-O", o_path]
-        command = ' '.join([str(elem) for elem in drr_lst])
+        command = ' '.join(drr_lst)
         output = qx(command, shell=True)
 
     file_paths = []
