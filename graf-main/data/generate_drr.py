@@ -152,6 +152,7 @@ if __name__ == '__main__':
         command = ' '.join(adjust_lst)
         print(command)
         output = qx('plastimatch')
+        print(output)
         output = qx(command)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
