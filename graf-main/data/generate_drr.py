@@ -145,7 +145,7 @@ if __name__ == '__main__':
         raw_input_file = os.path.join(save_root_path, '{}.mha'.format(output_raw_name))
         dicom2raw(input_path, raw_input_file)
         # truncates the inputs to the range of [-1000,+1000]
-        adjust_lst = [plasti_path + 'plastimatch', "adjust", "--input",
+        adjust_lst = [plasti_path + '/plastimatch', "adjust", "--input",
                       raw_input_file, "--output", raw_input_file,
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
