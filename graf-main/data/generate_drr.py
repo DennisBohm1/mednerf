@@ -55,7 +55,7 @@ def array2string(ndarray):
     ret = ""
     for i in ndarray:
         ret = ret + str(i) + " "
-    return ret[:-2]
+    return ret[:-1]
 
 
 # save a .pfm file as a .png file
