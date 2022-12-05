@@ -11,10 +11,5 @@
 module load 2022r2
 module load openmpi
 module load python
-module load py-matplotlib
 module load py-numpy
-module load py-scikit-image
-module load py-pydicom
-module load py-gdcm
-module load py-pylibjpeg-libjpeg
 srun python graf-main/render_xray_G_Z.py > output.log
