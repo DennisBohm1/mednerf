@@ -99,7 +99,7 @@ def savepng(filename, direction, idx):
         im = np.fliplr(im)
 
     savedir, _ = os.path.split(filename)
-    outfile = os.path.join(savedir, f"xray{idx:04}.png")
+    outfile = os.path.join(savedir, "xray{:04}.png".format(idx))
     # plt.imshow(im, cmap=plt.cm.gray)
     plt.imsave(outfile, im, cmap=plt.cm.gray)
     # plt.imsave saves an image with 32bit per pixel, but we only need one channel
