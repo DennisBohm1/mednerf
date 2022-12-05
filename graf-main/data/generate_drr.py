@@ -143,15 +143,15 @@ if __name__ == '__main__':
     if preprocessing:
         # Converting dicom files to .mha for plastimatch processing
         raw_input_file = os.path.join(save_root_path, '{}.mha'.format(output_raw_name))
-        print(raw_input_file)
-        print(os.getcwd())
         dicom2raw(input_path, raw_input_file)
         # truncates the inputs to the range of [-1000,+1000]
         adjust_lst = [plasti_path + '/plastimatch', "adjust", "--input",
                       raw_input_file, "--output", raw_input_file,
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
-        output = qx(adjust_lst)
+        command = ' '.join(adjust_lst)
+        print(command)
+        output = qx(command)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
     # compute isocenter
