@@ -150,7 +150,7 @@ if __name__ == '__main__':
                       "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
         # "-inf,0,-1000,-1000,+1000,+1000,inf,0"
         command = ' '.join(adjust_lst)
-        output = qx(adjust_lst, shell=True)
+        output = qx(command, shell=True)
 
     ct_itk, ct_scan, ori_origin, ori_size, ori_spacing = load_scan_mhda(raw_input_file)
     # compute isocenter
