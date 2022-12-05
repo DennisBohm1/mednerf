@@ -237,7 +237,7 @@ if __name__ == "__main__":
     args, unknown = parser.parse_known_args()
     device = torch.device("cuda:0")
 
-    config_file = load_config(args.config_file, 'configs/default.yaml')
+    config_file = load_config(args.config_file, 'configs/knee.yaml')
     config_file['data']['fov'] = float(config_file['data']['fov'])
     config_file = update_config(config_file, unknown)
 
