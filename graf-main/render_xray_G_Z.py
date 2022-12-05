@@ -220,7 +220,7 @@ def reconstruct(args, config_file):
 
 
 if __name__ == "__main__":
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    # subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
     # Arguments
     parser = argparse.ArgumentParser(
         description='Finetune the latent code to reconstruct the CT given an xray projection.'
@@ -237,7 +237,7 @@ if __name__ == "__main__":
     args, unknown = parser.parse_known_args()
     device = torch.device("cuda:0")
 
-    config_file = load_config(args.config_file, True)
+    config_file = load_config(args.config_file, 'configs/default.yaml')
     config_file['data']['fov'] = float(config_file['data']['fov'])
     config_file = update_config(config_file, unknown)
 
@@ -254,4 +254,5 @@ if __name__ == "__main__":
         checkpoint_dir=checkpoint_dir
     )
 
+    print("Start reconstructing")
     reconstruct(args, config_file)
