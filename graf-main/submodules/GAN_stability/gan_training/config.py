@@ -16,7 +16,7 @@ def load_config(path, default_path):
     '''
     # Load configuration from file itself
     with open(path, 'r') as f:
-        cfg_special = yaml.load(f)
+        cfg_special = yaml.load(f, FullLoader)
 
     # Check if we should inherit from a config
     inherit_from = cfg_special.get('inherit_from')
