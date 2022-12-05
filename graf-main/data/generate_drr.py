@@ -109,8 +109,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    input_path = '/home/dennis/mednerf/graf-main/data/Pancreas-99667'
-    save_root_path = '/home/dennis/mednerf/graf-main/data/PancreasResults'
+    input_path = '/home/dennis/mednerf/graf-main/data/label0001'
+    save_root_path = '/home/dennis/mednerf/graf-main/data/labelResults'
     plasti_path = '/usr/bin'
     output_raw_name = 'raw_file'
     # False: single xray output
