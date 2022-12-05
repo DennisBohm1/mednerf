@@ -114,7 +114,7 @@ def reconstruct(args, config_file):
                       device=device)
 
     # Load checkpoint
-    model_file = args['model']
+    model_file = args.model
     print('load %s' % os.path.join(checkpoint_dir, model_file))
     load_dict = checkpoint_io.load(model_file)
 
@@ -133,13 +133,13 @@ def reconstruct(args, config_file):
         render_radius = float(render_radius.split(',')[1])
 
     transform_list = [
-        transforms.Resize((args['img_size'], args['img_size'])),
+        transforms.Resize((args.img_size, args.img_size)),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     ]
     trans = transforms.Compose(transform_list)
 
-    target_xray = glob.glob(os.path.join(args['xray_img_path'], '*.png'))
+    target_xray = glob.glob(os.path.join(args.xray_img_path, '*.png'))
     target_xray = torch.unsqueeze(trans(Image.open(target_xray[0]).convert('RGB')),0)
 
     range_theta = (to_theta(config_file['data']['vmin']), to_theta(config_file['data']['vmax']))
@@ -164,14 +164,14 @@ def reconstruct(args, config_file):
     pbar = tqdm(total=5000)
     for iteration in range(5000):
         generator.train()
-        rays = torch.stack([get_rays(poses[0].to(device), generator, args['img_size'])])
+        rays = torch.stack([get_rays(poses[0].to(device), generator, args.img_size)])
         rays = rays.permute(1, 0, 2, 3).flatten(1, 2)       # Bx2x(HxW)xC -> 2x(BxHxW)x3
 
         z_optim.zero_grad()
         g_optim.zero_grad()
         rgb = generator(z, rays=rays)
 
-        reshape = lambda x: x.view(1, args['img_size'], args['img_size'], x.shape[1]).permute(0, 3, 1, 2)  # (NxHxW)xC -> NxCxHxW
+        reshape = lambda x: x.view(1, args.img_size, args.img_size, x.shape[1]).permute(0, 3, 1, 2)  # (NxHxW)xC -> NxCxHxW
         rgb = reshape(rgb).cpu()
         reshape = lambda x: x.view(N_samples, N_frames, *x.shape[1:])
         xray_recons = reshape(rgb)
@@ -200,12 +200,12 @@ def reconstruct(args, config_file):
             f"Reconstructionloss g: {log_rec_loss:.4f}")
         pbar.update(1)
 
-        if iteration % args['save_every'] == args['save_every'] - 1:
+        if iteration % args.save_every == args.save_every - 1:
             with torch.no_grad():
                 test(config_file, z, generator, 72,
-                     iteration, args['img_size'])
+                     iteration, args.img_size)
 
-        if psnr_value > args['psnr_stop']:
+        if psnr_value > args.psnr_stop:
             break
 
         ssim_value = 0.
@@ -214,38 +214,28 @@ def reconstruct(args, config_file):
         
 if __name__ == "__main__":
     # Arguments
-    # parser = argparse.ArgumentParser(
-    #     description='Finetune the latent code to reconstruct the CT given an xray projection.'
-    # )
-    # parser.add_argument('config_file', type=str, help='Path to config file.')
-    # parser.add_argument('--xray_img_path', type=str, default='None', help='Path to real xray')
-    # parser.add_argument('--save_dir', type=str, help='Name of dir to save results')
-    # parser.add_argument('--model', type=str, default='model_best.pt', help='model.pt to use for eval')
-    # parser.add_argument("--save_every", default=25, type=int, help="save video of projections every number of iterations")
-    # parser.add_argument("--psnr_stop", default=25, type=float, help="stop at this psnr value")
-    # parser.add_argument('--img_size', type=int, default=64, help='Use a size of 64 if GPU size <=10GB ')
-    #
-    # args, unknown = parser.parse_known_args()
-    args = {
-        # 'config_file': 'configs/experiment.yaml'
-        'xray_img_path': 'mednerf_drr_dataset/knee_xrays/01_xray0000.png',
-        'save_dir': 'results/test',
-        'model': 'models/carla_512.pt',
-        # 'save_every':
-        # 'psnr_stop':
-        # 'img_size':
-    }
+    parser = argparse.ArgumentParser(
+        description='Finetune the latent code to reconstruct the CT given an xray projection.'
+    )
+    parser.add_argument('config_file', type=str, help='Path to config file.')
+    parser.add_argument('--xray_img_path', type=str, default='None', help='Path to real xray')
+    parser.add_argument('--save_dir', type=str, help='Name of dir to save results')
+    parser.add_argument('--model', type=str, default='model_best.pt', help='model.pt to use for eval')
+    parser.add_argument("--save_every", default=25, type=int, help="save video of projections every number of iterations")
+    parser.add_argument("--psnr_stop", default=25, type=float, help="stop at this psnr value")
+    parser.add_argument('--img_size', type=int, default=64, help='Use a size of 64 if GPU size <=10GB ')
 
+    args, unknown = parser.parse_known_args()
     device = torch.device("cuda:0")
         
-    config_file = load_config('configs/default.yaml')
+    config_file = load_config(args.config_file, 'configs/default.yaml')
     config_file['data']['fov'] = float(config_file['data']['fov'])
-    # config_file = update_config(config_file, unknown)
+    config_file = update_config(config_file, unknown)
 
     batch_size = 1
     out_dir = os.path.join(config_file['training']['outdir'], config_file['expname'])
     checkpoint_dir = path.join(out_dir, 'chkpts')
-    eval_dir = os.path.join(out_dir, args['save_dir'])
+    eval_dir = os.path.join(out_dir, args.save_dir)
     os.makedirs(eval_dir, exist_ok=True)
 
     config_file['training']['nworkers'] = 0
