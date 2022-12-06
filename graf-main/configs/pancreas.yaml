@@ -1,6 +1,6 @@
 expname: pancreas
 data:
-  datadir: data/pngmasks
+  datadir: data/Pancreas\ MIP
   imsize: 128
   white_bkgd: False
   radius: 9.5,10.5
