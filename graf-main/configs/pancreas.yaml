@@ -1,4 +1,4 @@
-expname: knee_all_360
+expname: pancreas
 data:
   datadir: data/pngmasks
   imsize: 128
