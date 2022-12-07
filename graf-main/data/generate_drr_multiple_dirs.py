@@ -156,6 +156,7 @@ if __name__ == '__main__':
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
             #-inf,0,-1000,-1000,+3000,+3000,inf,
             output = qx(adjust_lst)
+            print(output)
     #        set_bone_threshold = [plasti_path+'/plastimatch', "threshold", "--input",
     #                              mha_adjust, "--output", mha_bone,
     #                              "--above", "-1000"]
