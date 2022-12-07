@@ -155,7 +155,7 @@ if __name__ == '__main__':
                           "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
             #-inf,0,-1000,-1000,+3000,+3000,inf,
-            command = ' '.join([str(elem) for elem in adjust_lst])
+            command = ' '.join(adjust_lst)
             output = qx(command)
     #        set_bone_threshold = [plasti_path+'/plastimatch', "threshold", "--input",
     #                              mha_adjust, "--output", mha_bone,
