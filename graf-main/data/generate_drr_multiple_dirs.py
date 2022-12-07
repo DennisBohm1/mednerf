@@ -105,8 +105,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    global_path = r"/home/dennis/Pancreas Data/NIH/Mask DICOM/"
-    save_path = r"/home/dennis/Pancreas Data/NIH/Mask XRAYS/"
+    global_path = r"/home/dennis/Pancreas\ Data/NIH/Mask\ DICOM/"
+    save_path = r"/home/dennis/Pancreas\ Data/NIH/Mask XRAYS/"
     # get dir names
     dirs = [f.path for f in os.scandir(global_path) if f.is_dir()]
 
@@ -156,7 +156,6 @@ if __name__ == '__main__':
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
             #-inf,0,-1000,-1000,+3000,+3000,inf,
             output = qx(adjust_lst)
-            print(output)
     #        set_bone_threshold = [plasti_path+'/plastimatch', "threshold", "--input",
     #                              mha_adjust, "--output", mha_bone,
     #                              "--above", "-1000"]
@@ -178,7 +177,6 @@ if __name__ == '__main__':
                        "-z", detector_size, "-P", "preprocess",
                        "-I", raw_input_file, "-O", o_path]
             command = ' '.join([str(elem) for elem in drr_lst])
-            print(command)
             output = qx(command)
         else:
             o_path = os.path.join(save_dir, 'xray_')
