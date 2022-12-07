@@ -150,7 +150,7 @@ if __name__ == '__main__':
             dicom2raw(os.path.abspath(os.path.join(ct_files[0], '..')),
                       raw_input_file)
             # truncates the inputs to the range of [-1000,+1000]
-            adjust_lst = ['plastimatch', "adjust", "--input",
+            adjust_lst = ['/usr/bin/plastimatch', "adjust", "--input",
                           raw_input_file, "--output", raw_input_file,
                           "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
@@ -170,7 +170,7 @@ if __name__ == '__main__':
 
         if multiple_view_mode:
             o_path = os.path.join(save_dir, 'xray_')
-            drr_lst = ['plastimatch', "drr", "-A", "cuda", "-t", "pfm",
+            drr_lst = ['/usr/bin/plastimatch', "drr", "-A", "cuda", "-t", "pfm",
                        "--algorithm", "uniform", "--gantry-angle", "0",
                        "-N", angle, "-a", num_xrays, "--sad", sad, "--sid", sid,
                        "--autoscale", "--autoscale-range", bg_color,
