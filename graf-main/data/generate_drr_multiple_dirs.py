@@ -175,7 +175,8 @@ if __name__ == '__main__':
                        "--autoscale", "--autoscale-range", bg_color,
                        "-r", resolution, "-o", array2string(center),
                        "-z", detector_size, "-P", "preprocess",
-                       "-I", raw_input_file, "-O", o_path]
+                       "-I", raw_input_file]
+                       # "-I", raw_input_file, "-O", o_path]
             command = ' '.join([str(elem) for elem in drr_lst])
             print(os.getcwd(), raw_input_file)
             output = qx(command)
