@@ -168,7 +168,7 @@ if __name__ == '__main__':
         print("center: ", center)
 
         if multiple_view_mode:
-            o_path = os.path.join(save_dir, 'xray_', save_name)
+            o_path = os.path.join(save_dir, 'xray_' + save_name)
             drr_lst = ['plastimatch', "drr", "-A", "cuda", "-t", "pfm",
                        "--algorithm", "uniform", "--gantry-angle", "0",
                        "-N", angle, "-a", num_xrays, "--sad", sad, "--sid", sid,
