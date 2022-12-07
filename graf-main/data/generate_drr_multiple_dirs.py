@@ -105,8 +105,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    global_path = r"/home/dennis/Pancreas\ Data/NIH/Mask\ DICOM/"
-    save_path = r"/home/dennis/Pancreas\ Data/NIH/Mask XRAYS/"
+    global_path = r"/home/dennis/Pancreas Data/NIH/Mask DICOM"
+    save_path = r"/home/dennis/Pancreas Data/NIH/Mask XRAYS"
     # get dir names
     dirs = [f.path for f in os.scandir(global_path) if f.is_dir()]
 
