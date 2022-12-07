@@ -105,8 +105,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    global_path = '/media/abrilcf/AprilsDrive/phd/datasets/MIDRC-RICORD-1B'
-    save_path = '/media/abrilcf/899f2142-a79b-460e-b428-d45e0930f90b/extra/lap/PhD/DataSets/medical/chest'
+    global_path = '/home/dennis/Pancreas Data/NIH/Mask DICOM/'
+    save_path = '/home/dennis/Pancreas Data/NIH/Mask XRAYS/'
     # get dir names
     dirs = [f.path for f in os.scandir(global_path) if f.is_dir()]
 
@@ -134,10 +134,10 @@ if __name__ == '__main__':
         # Note that the following values are sometimes missing from the CT
         # if missing, use sad="541", sid="949" for: chest & head-neck
         # DistanceSourceToPatient in mm
-        sad = str(ds.DistanceSourceToPatient)
-        sid = str(ds.DistanceSourceToDetector)
+        sad = 541
+        sid = 949
 
-        save_name = f"{i+1:04}_chest"
+        save_name = f"{i+1:04}_pancreas"
         save_dir = os.path.join(save_path, save_name)
         try:
             os.makedirs(save_dir)
