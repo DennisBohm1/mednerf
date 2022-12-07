@@ -105,8 +105,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    global_path = '/home/dennis/Pancreas Data/NIH/Mask DICOM/'
-    save_path = '/home/dennis/Pancreas Data/NIH/Mask XRAYS/'
+    global_path = r"/home/dennis/Pancreas Data/NIH/Mask DICOM/"
+    save_path = r"/home/dennis/Pancreas Data/NIH/Mask XRAYS/"
     # get dir names
     dirs = [f.path for f in os.scandir(global_path) if f.is_dir()]
 
@@ -169,8 +169,8 @@ if __name__ == '__main__':
         print("center: ", center)
 
         if multiple_view_mode:
-            o_path = os.path.join(save_dir, 'xray_' + save_name)
-            drr_lst = ['/usr/bin/plastimatch', "drr", "-A", "cuda", "-t", "pfm",
+            o_path = os.path.join(save_dir, 'xray_')
+            drr_lst = ['plastimatch', "drr", "-A", "cuda", "-t", "pfm",
                        "--algorithm", "uniform", "--gantry-angle", "0",
                        "-N", angle, "-a", num_xrays, "--sad", sad, "--sid", sid,
                        "--autoscale", "--autoscale-range", bg_color,
