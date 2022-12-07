@@ -49,10 +49,10 @@ def get_center(origin, size, spacing):
 
 # convert a ndarray to string
 def array2string(ndarray):
-    ret = "'"
+    ret = ""
     for i in ndarray:
         ret = ret + str(i) + " "
-    return ret[:-1] + "'"
+    return ret[:-1]
 
 # save a .pfm file as a .png file
 def savepng(filename, direction, idx):
@@ -117,13 +117,13 @@ if __name__ == '__main__':
     preprocessing = True
     # Use "500 500" for chest
     # use "350 350" for knee
-    detector_size = "'500 500'"
+    detector_size = "500 500"
     # Black bg: "0 255", white bg: "255 0"
-    bg_color = "'0 255'"
+    bg_color = "0 255"
     # If single view, choose frontal or lateral view
     frontal_dir = "0 1 0"
     lateral_dir = "1 0 0"
-    resolution = "'256 256'"
+    resolution = "256 256"
     # If multiple view:
     num_xrays = "2"
     angle = "90"
