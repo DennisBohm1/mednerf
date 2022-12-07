@@ -49,10 +49,10 @@ def get_center(origin, size, spacing):
 
 # convert a ndarray to string
 def array2string(ndarray):
-    ret = ""
+    ret = "'"
     for i in ndarray:
         ret = ret + str(i) + " "
-    return ret[:-2]
+    return ret[:-1] + "'"
 
 # save a .pfm file as a .png file
 def savepng(filename, direction, idx):
