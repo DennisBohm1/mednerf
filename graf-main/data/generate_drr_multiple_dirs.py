@@ -117,13 +117,13 @@ if __name__ == '__main__':
     preprocessing = True
     # Use "500 500" for chest
     # use "350 350" for knee
-    detector_size = "500 500"
+    detector_size = "'500 500'"
     # Black bg: "0 255", white bg: "255 0"
-    bg_color = "0 255"
+    bg_color = "'0 255'"
     # If single view, choose frontal or lateral view
     frontal_dir = "0 1 0"
     lateral_dir = "1 0 0"
-    resolution = "256 256"
+    resolution = "'256 256'"
     # If multiple view:
     num_xrays = "2"
     angle = "90"
@@ -176,7 +176,8 @@ if __name__ == '__main__':
                        "-r", resolution, "-o", array2string(center),
                        "-z", detector_size, "-P", "preprocess",
                        "-I", raw_input_file, "-O", o_path]
-            output = qx(drr_lst)
+            command = ' '.join([str(elem) for elem in drr_lst])
+            output = qx(command)
         else:
             o_path = os.path.join(save_dir, 'xray_')
             drr_lst = ['plastimatch', "drr", "-t", "pfm",
