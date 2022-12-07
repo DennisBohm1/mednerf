@@ -105,8 +105,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    global_path = r"/home/dennis/Pancreas Data/NIH/Mask DICOM"
-    save_path = r"/home/dennis/Pancreas Data/NIH/Mask XRAYS"
+    global_path = r"/home/dennis/Pancreas Data/NIH/Mask DICOM/"
+    save_path = r"/home/dennis/Pancreas Data/NIH/Mask XRAYS/"
     # get dir names
     dirs = [f.path for f in os.scandir(global_path) if f.is_dir()]
 
@@ -137,7 +137,7 @@ if __name__ == '__main__':
         sad = 541
         sid = 949
 
-        save_name = f"{i+1:04}_pancreas"
+        save_name = f"{i+1:04}_pancreas/"
         save_dir = os.path.join(save_path, save_name)
         try:
             os.makedirs(save_dir)
@@ -146,7 +146,7 @@ if __name__ == '__main__':
             
         if preprocessing:
             # Converting dicom files to .mha for plastimatch processing
-            raw_input_file = os.path.join(save_dir, '{}.mha'.format(save_name))
+            raw_input_file = os.path.join(save_dir, f"{save_name}.mha")
             dicom2raw(os.path.abspath(os.path.join(ct_files[0], '..')),
                       raw_input_file)
             # truncates the inputs to the range of [-1000,+1000]
@@ -175,8 +175,7 @@ if __name__ == '__main__':
                        "--autoscale", "--autoscale-range", bg_color,
                        "-r", resolution, "-o", array2string(center),
                        "-z", detector_size, "-P", "preprocess",
-                       "-I", raw_input_file]
-                       # "-I", raw_input_file, "-O", o_path]
+                       "-I", raw_input_file, "-O", o_path]
             command = ' '.join([str(elem) for elem in drr_lst])
             print(os.getcwd(), raw_input_file)
             output = qx(command)
