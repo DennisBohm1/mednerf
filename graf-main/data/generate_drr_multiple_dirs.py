@@ -170,7 +170,7 @@ if __name__ == '__main__':
 
         if multiple_view_mode:
             o_path = os.path.join(save_dir, 'xray_' + save_name)
-            drr_lst = ['plastimatch', "drr", "-A", "cuda", "-t", "pfm",
+            drr_lst = ['/usr/bin/plastimatch', "drr", "-A", "cuda", "-t", "pfm",
                        "--algorithm", "uniform", "--gantry-angle", "0",
                        "-N", angle, "-a", num_xrays, "--sad", sad, "--sid", sid,
                        "--autoscale", "--autoscale-range", bg_color,
