@@ -177,6 +177,7 @@ if __name__ == '__main__':
                        "-z", detector_size, "-P", "preprocess",
                        "-I", raw_input_file, "-O", o_path]
             command = ' '.join([str(elem) for elem in drr_lst])
+            print(os.listdir(raw_input_file))
             output = qx(command)
         else:
             o_path = os.path.join(save_dir, 'xray_')
