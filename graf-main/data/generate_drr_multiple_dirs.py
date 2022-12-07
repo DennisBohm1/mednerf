@@ -134,8 +134,8 @@ if __name__ == '__main__':
         # Note that the following values are sometimes missing from the CT
         # if missing, use sad="541", sid="949" for: chest & head-neck
         # DistanceSourceToPatient in mm
-        sad = 541
-        sid = 949
+        sad = '541'
+        sid = '949'
 
         save_name = f"{i+1:04}_pancreas"
         save_dir = os.path.join(save_path, save_name)
