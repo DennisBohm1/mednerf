@@ -109,8 +109,8 @@ def savepng(filename, direction, idx):
 
 
 if __name__ == '__main__':
-    input_path = '/home/dennis/mednerf/graf-main/data/Enhanced'
-    save_root_path = '/home/dennis/mednerf/graf-main/data/EnhancedResults'
+    input_path = '/home/dennis/Pancreas Data/NIH/Mask'
+    save_root_path = '/home/dennis/Pancreas Data/NIH/drr_mask'
     plasti_path = '/usr/bin'
     output_raw_name = 'raw_file'
     # False: single xray output
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     # True: dicom conversion & HU adjustment
     # False: output xray from given .mha (i.e., raw_input_file)
     preprocessing = True
-    raw_input_file = '/home/dennis/mednerf/graf-main/data/EnhancedResults/raw_file.mha'
+    raw_input_file = '/home/dennis/Pancreas Data/NIH/drr_mask/raw_file.mha'
     # Use "500 500" for chest
     # use "350 350" for knee
     detector_size = "'350 350'"
@@ -126,7 +126,7 @@ if __name__ == '__main__':
     bg_color = "'0 255'"
     # If single view, choose frontal or lateral view
     frontal_dir = True
-    resolution = "'128 128'"
+    resolution = "'512 512'"
     # If multiple view:
     num_xrays = "72"
     angle = "5"
