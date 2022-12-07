@@ -137,7 +137,7 @@ if __name__ == '__main__':
         sad = 541
         sid = 949
 
-        save_name = f"{i+1:04}_pancreas/"
+        save_name = f"{i+1:04}_pancreas"
         save_dir = os.path.join(save_path, save_name)
         try:
             os.makedirs(save_dir)
@@ -155,7 +155,8 @@ if __name__ == '__main__':
                           "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
             #-inf,0,-1000,-1000,+3000,+3000,inf,
-            output = qx(adjust_lst)
+            command = ' '.join([str(elem) for elem in adjust_lst])
+            output = qx(command)
     #        set_bone_threshold = [plasti_path+'/plastimatch', "threshold", "--input",
     #                              mha_adjust, "--output", mha_bone,
     #                              "--above", "-1000"]
