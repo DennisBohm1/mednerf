@@ -155,8 +155,8 @@ if __name__ == '__main__':
                           "--pw-linear", "-inf,0,-1000,-1000,+1000,+1000,inf,0"]
             #"-inf,0,-1000,-1000,+1000,+1000,inf,0"
             #-inf,0,-1000,-1000,+3000,+3000,inf,
-            command = ' '.join(adjust_lst)
-            output = qx(command)
+            # command = ' '.join(adjust_lst)
+            output = qx(adjust_lst)
     #        set_bone_threshold = [plasti_path+'/plastimatch', "threshold", "--input",
     #                              mha_adjust, "--output", mha_bone,
     #                              "--above", "-1000"]
@@ -177,9 +177,9 @@ if __name__ == '__main__':
                        "-r", resolution, "-o", array2string(center),
                        "-z", detector_size, "-P", "preprocess",
                        "-I", raw_input_file, "-O", o_path]
-            command = ' '.join([str(elem) for elem in drr_lst])
-            print(os.getcwd(), raw_input_file)
-            output = qx(command)
+            # command = ' '.join([str(elem) for elem in drr_lst])
+            # print(os.getcwd(), raw_input_file)
+            output = qx(drr_lst)
         else:
             o_path = os.path.join(save_dir, 'xray_')
             drr_lst = ['plastimatch', "drr", "-t", "pfm",
