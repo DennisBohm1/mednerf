@@ -25,10 +25,10 @@ After training a model, you can test its capacity to reconstruct 3D-aware CT pro
 
 To execute the reconstruction, please refer to graf-main folder and execute:
 ```
-python render_xray_G.py configs/experiment.yaml /
-    --xray_img_path path_to_xray_folder /
+python render_xray_G.py configs/default.yaml /
+    --xray_img_path mednerf_drr_dataset/knee_xrays/01_xray0000.png /
     --save_dir ./renderings /
-    --model path_to_trained_model/model_best.pt /
+    --model models/carla_512.pt /
     --save_every 25 /
     --psnr_stop 25 
 ```
